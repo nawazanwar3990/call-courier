@@ -29,8 +29,7 @@ class BranchListRequest extends FormRequest
     {
         $tableName = TableEnum::BRANCHES;
 
-        $records = Branch::whereNull('tasks.deleted_at')
-            ->whereHas('createdBy', function ($query) {
+        $records = Branch::whereHas('createdBy', function ($query) {
                 $query->whereNull('users.deleted_at');
             })->with(['createdBy', 'updatedBy']);
         $draw = $this->get('draw');
@@ -52,8 +51,7 @@ class BranchListRequest extends FormRequest
 
         $records = $records->when(strlen($searchValue), function (Builder $query) use ($searchValue, $tableName) {
             $query->where(function (Builder $q) use ($searchValue, $tableName) {
-                $q->where("{$tableName}.name", 'like', DB::raw("'%$searchValue%'"))
-                    ->orWhere("{$tableName}.description", 'like', DB::raw("'%$searchValue%'"));
+                $q->where("{$tableName}.name", 'like', DB::raw("'%$searchValue%'"));
             });
         });
 
@@ -71,12 +69,8 @@ class BranchListRequest extends FormRequest
         foreach ($records as $key => $record) {
             $dataArr[] = [
                 'thumbnail_image' => '<img src="' . $record->getFirstMediaUrl('picture') . '" width="50" class="rounded" />',
-                'task_name' => $record->task_name,
-                'task_url' => $record->task_url,
-                'set_coins' => $record->set_coins,
+                'name' => $record->name,
                 'status' => ($record->active === true ? '<span class="badge bg-success">' . __('general.active') . '</span>' : '<span class="badge bg-danger">' . __('general.in_active') . '</span>'),
-                'task_limit' => $record->task_limit,
-                'task_instruction' => $record->task_instruction,
                 'action' => $this->getActions($record)
             ];
         }

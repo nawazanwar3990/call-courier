@@ -13,15 +13,12 @@ use App\Models\Role;
 use App\Models\Submission;
 use App\Models\Branch;
 use App\Models\User;
-use App\Policies\GiftCardPolicy;
-use App\Policies\InventoryPolicy;
 use App\Policies\PasswordResetPolicy;
 use App\Policies\RedeemPolicy;
-use App\Policies\TypePolicy;
 use App\Policies\PermissionPolicy;
 use App\Policies\RolePolicy;
 use App\Policies\SubmissionPolicy;
-use App\Policies\TaskPolicy;
+use App\Policies\BranchPolicy;
 use App\Policies\UserPolicy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Blueprint;
@@ -75,12 +72,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(Role::class, RolePolicy::class);
         Gate::policy(User::class, UserPolicy::class);
         Gate::policy(Permission::class, PermissionPolicy::class);
-        Gate::policy(Branch::class, TaskPolicy::class);
-        Gate::policy(Type::class, TypePolicy::class);
-        Gate::policy(GiftCard::class, GiftCardPolicy::class);
-        Gate::policy(Submission::class, SubmissionPolicy::class);
-        Gate::policy(Inventory::class, InventoryPolicy::class);
-        Gate::policy(Redeem::class, RedeemPolicy::class);
+        Gate::policy(Branch::class, BranchPolicy::class);
         Gate::policy(PasswordReset::class, PasswordResetPolicy::class);
     }
 

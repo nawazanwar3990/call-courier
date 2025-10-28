@@ -27,7 +27,7 @@ Route::middleware(['auth', 'auth.session'])
         Route::resource('users', UserController::class);
         Route::resource('roles', RoleController::class);
         Route::resource('permissions', PermissionController::class);
-        Route::resource('tasks', BranchController::class);
+        Route::resource('branches', BranchController::class);
         Route::resource('role-users', RoleUserController::class, ['names' => 'role-users'])->only(['index', 'store']);
         Route::resource('role-permissions', RolePermissionController::class, ['names' => 'role-permissions'])->only(['index', 'store']);
         Route::get('notifications', [NotificationController::class, 'index'])->name('notifications');

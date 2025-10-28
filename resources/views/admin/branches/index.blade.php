@@ -1,5 +1,6 @@
 <x-dashboard-layout :page-title="$pageTitle">
     <x-breadcrumb :page-title="$pageTitle" :bread-crumbs="$breadCrumbs" />
+
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -7,14 +8,14 @@
                     <div class="table-responsive-sm">
                         <table class="table table-bordered table-hover table-compact w-100" id="table">
                             <thead>
-                                <tr>
-                                    <th>{{ __('general.thumbnail_image') }}</th>
-                                    <th>{{ __('general.name') }}</th>
-                                    <th class="text-center">{!! __('general.actions') !!}</th>
-                                </tr>
+                            <tr>
+                                <th>{{ __('general.thumbnail_image') }}</th>
+                                <th>{{ __('general.name') }}</th>
+                                <th>{{ __('general.status') }}</th>
+                                <th class="text-center">{!! __('general.actions') !!}</th>
+                            </tr>
                             </thead>
-                            <tbody>
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                     </div>
                 </div>
@@ -28,7 +29,7 @@
     <x-slot name="pageJs">
         <script>
             var datatable;
-            $(function() {
+            $(function () {
                 datatable = $('#table').DataTable({
                     language: {
                         search: "{{ __('general.search') }}",
@@ -45,66 +46,61 @@
                             last: "{{ __('general.last') }}"
                         },
                     },
-                    "serverSide": true,
-                    "processing": true,
-                    "paging": true,
-                    "responsive": true,
-                    "columnDefs": [
-                        {
-                            "orderable": false,
-                            "targets": [0, 6]
-                        },
-                        {
-                            "defaultContent": "",
-                            "targets": "_all"
-                        }],
-                    "lengthMenu": [
+                    serverSide: true,
+                    processing: true,
+                    paging: true,
+                    responsive: true,
+                    columnDefs: [
+                        { orderable: false, targets: [0, 3] },
+                        { defaultContent: "", targets: "_all" }
+                    ],
+                    lengthMenu: [
                         [10, 25, 50, 100, -1],
                         [10, 25, 50, 100, "{{ __('general.all') }}"]
                     ],
-                    "pageLength": 100,
-                    dom: '<"dt-action-buttons text-end pt-3 pt-md-0"B><"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end"f>>tr<"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
-                    "buttons": [
+                    pageLength: 100,
+                    dom: '<"dt-action-buttons text-end pt-3 pt-md-0"B>' +
+                        '<"row"<"col-sm-12 col-md-6"l>' +
+                        '<"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end"f>>' +
+                        'tr' +
+                        '<"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
+                    buttons: [
                         {
                             extend: "collection",
                             className: "btn btn-label-primary dropdown-toggle me-2",
                             text: '<i class="far fa-file-export me-sm-1"></i> <span class="d-none d-sm-inline-block">{{ __('general.export') }}</span>',
-                            buttons: [{
-                                extend: "print",
-                                text: '<i class="far fa-print me-1" ></i><span class="dt-dropdown-text-dark">{{ __('general.print') }}</span>',
-                                className: "dropdown-item",
-                                footer: true,
-                                exportOptions: {
-                                    columns: ':not(.no-export)'
-                                }
-                            },{
-                                extend: "csv",
-                                text: '<i class="far fa-file-csv me-1"></i><span class="dt-dropdown-text-dark">{{ __('general.csv') }}</span>',
-                                className: "dropdown-item",
-                                footer: true,
-                                exportOptions: {
-                                    columns: ':not(.no-export)'
-                                }
-                            },{
-                                extend: "excel",
-                                text: '<i class="far fa-file-excel me-1"></i><span class="dt-dropdown-text-dark">{{ __('general.excel') }}</span>',
-                                className: "dropdown-item",
-                                footer: true,
-                                exportOptions: {
-                                    columns: ':not(.no-export)'
-                                }
-                            },{
-                                extend: "pdf",
-                                text: '<i class="far fa-file-pdf me-1"></i><span class="dt-dropdown-text-dark">{{ __('general.pdf') }}</span>',
-                                className: "dropdown-item",
-                                footer: true,
-                                exportOptions: {
-                                    columns: ':not(.no-export)'
-                                }
-                            },
+                            buttons: [
+                                {
+                                    extend: "print",
+                                    text: '<i class="far fa-print me-1"></i><span class="dt-dropdown-text-dark">{{ __('general.print') }}</span>',
+                                    className: "dropdown-item",
+                                    footer: true,
+                                    exportOptions: { columns: ':not(.no-export)' }
+                                },
+                                {
+                                    extend: "csv",
+                                    text: '<i class="far fa-file-csv me-1"></i><span class="dt-dropdown-text-dark">{{ __('general.csv') }}</span>',
+                                    className: "dropdown-item",
+                                    footer: true,
+                                    exportOptions: { columns: ':not(.no-export)' }
+                                },
+                                {
+                                    extend: "excel",
+                                    text: '<i class="far fa-file-excel me-1"></i><span class="dt-dropdown-text-dark">{{ __('general.excel') }}</span>',
+                                    className: "dropdown-item",
+                                    footer: true,
+                                    exportOptions: { columns: ':not(.no-export)' }
+                                },
+                                {
+                                    extend: "pdf",
+                                    text: '<i class="far fa-file-pdf me-1"></i><span class="dt-dropdown-text-dark">{{ __('general.pdf') }}</span>',
+                                    className: "dropdown-item",
+                                    footer: true,
+                                    exportOptions: { columns: ':not(.no-export)' }
+                                },
                             ],
                         },
-                        @can('hasAccess', (\App\Enums\AbilityEnum::CREATE . '_' . \App\Enums\KeywordEnum::TASK))
+                            @can('hasAccess', (\App\Enums\AbilityEnum::CREATE . '_' . \App\Enums\KeywordEnum::BRANCH))
                         {
                             text: '<i class="far fa-plus-circle"></i> <span class="d-none d-sm-inline-block">{{ __('general.create') }}</span>',
                             className: 'btn btn-primary modal-add-btn',
@@ -115,18 +111,17 @@
                         },
                         @endcan
                     ],
-                    'ajax': {
-                        'url': "{{ route('admin.branches.index') }}",
-                        'data': function (data) {
-                        }
+                    ajax: {
+                        url: "{{ route('admin.branches.index') }}",
+                        data: function (data) {}
                     },
                     columns: [
-                        {data: 'thumbnail_image', className: 'text-center'},
-                        {data: 'name'},
-                        {data: 'status', className: 'text-center'},
-                        {data: 'action', className: "text-center col-1 align-middle no-export"},
+                        { data: 'thumbnail_image', className: 'text-center' },
+                        { data: 'name' },
+                        { data: 'status', className: 'text-center' },
+                        { data: 'action', className: 'text-center col-1 align-middle no-export' },
                     ],
-                    "fnDrawCallback": function(oSettings) {
+                    fnDrawCallback: function (oSettings) {
                         initTooltip();
                     }
                 });

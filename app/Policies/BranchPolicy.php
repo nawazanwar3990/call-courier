@@ -5,7 +5,7 @@ namespace App\Policies;
 use App\Enums\KeywordEnum;
 use App\Policies\AbstractDefaultPolicy;
 
-class TaskPolicy extends AbstractDefaultPolicy
+class BranchPolicy extends AbstractDefaultPolicy
 {
-    protected const KEYWORD = KeywordEnum::TASK;
+    protected const KEYWORD = KeywordEnum::BRANCH;
 }

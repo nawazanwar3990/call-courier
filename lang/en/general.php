@@ -16,7 +16,7 @@ return [
     'to' => 'To',
     'of' => 'of',
     'from' => 'From',
-    'tasks' => 'Tasks',
+    'branches' => 'Branches',
     'my_profile' => 'Profile',
     'logout' => 'Logout',
     'users' => 'Users',

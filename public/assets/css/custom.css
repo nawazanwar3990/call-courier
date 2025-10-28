@@ -554,3 +554,12 @@ table.dataTable tr.dtrg-group.dtrg-end.dtrg-level-0 td {
     max-width: 486px !important;
     margin: 0 auto !important;
 }
+.btn-primary,
+.btn-primary:hover
+.btn[class*=btn-]:active, .btn[class*=btn-].active{
+    background-color: #3d935e !important;
+    border: 1px solid #3d935e !important;
+}
+.text-primary {
+    color: #3d935e !important;
+}

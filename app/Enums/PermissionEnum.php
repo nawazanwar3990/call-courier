@@ -30,12 +30,7 @@ class PermissionEnum extends AbstractEnum
             KeywordEnum::USER,
             KeywordEnum::ROLE,
             KeywordEnum::PERMISSION,
-            KeywordEnum::TASK,
-            KeywordEnum::GIFT_CARD,
-            KeywordEnum::TYPE,
-            KeywordEnum::SUBMISSION,
-            KeywordEnum::INVENTORY,
-            KeywordEnum::REDEEM,
+            KeywordEnum::BRANCH,
             KeywordEnum::PASSWORD_RESET
         ];
     }

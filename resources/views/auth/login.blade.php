@@ -4,7 +4,7 @@
             <div class="card shadow mx-3">
                 <div class="card-body">
                    <div class="card-header mx-auto">
-                       <a href="{{ route('admin.dashboard') }}">
+                       <a href="{{ route('admin.dashboard') }}" class="px-5">
                            <img src="{{ asset('assets/img/logo.png') }}" alt="{{ config('app.name') }}" class="h-px-100">
                        </a>
                    </div>
