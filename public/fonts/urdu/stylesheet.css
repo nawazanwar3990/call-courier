@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'urdu';
+    src: url('Font_Jameel-Noori-Nastaleeq.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+.urdu-font {
+    font-family: urdu !important;
+    font-style: normal;
+    font-weight: normal;
+}

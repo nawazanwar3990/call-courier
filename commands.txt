@@ -1,0 +1,15 @@
+---------- putty connection----------
+host: 185.208.206.46
+username: businessholics_reward
+password: MvUk5@5i
+
+port: 22
+
+directory /web
+
+
+
+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
+
+
+
