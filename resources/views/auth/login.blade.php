@@ -3,8 +3,11 @@
         <div class="py-4">
             <div class="card shadow mx-3">
                 <div class="card-body">
-                    @include('auth.logo', ['type' => 'login'])
-
+                   <div class="card-header mx-auto">
+                       <a href="{{ route('admin.dashboard') }}">
+                           <img src="{{ asset('assets/img/logo.png') }}" alt="{{ config('app.name') }}" class="h-px-100">
+                       </a>
+                   </div>
                     <form id="formAuthentication" method="POST" action="{{ route('login') }}" class="mb-3">
                         @csrf
 
@@ -58,11 +61,6 @@
                             {{ __('general.sign_in') }}
                         </button>
                     </form>
-
-                    <p class="text-center">
-                        <span>{{ trans('general.dont_have_a_account') }}</span>
-                        <a href="{{ route('register') }}">{{ trans('general.create_an_account') }}</a>
-                    </p>
                 </div>
             </div>
         </div>

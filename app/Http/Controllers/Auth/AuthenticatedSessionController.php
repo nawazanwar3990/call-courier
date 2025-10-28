@@ -52,7 +52,7 @@ class AuthenticatedSessionController extends Controller
         if ($role === RoleEnum::ROLE_SUPER_ADMIN) {
             return redirect()->route('admin.users.index');
         }else{
-            return redirect()->intended(route('website.index'));
+            return redirect()->intended(route('admin.dashboard'));
         }
     }
     public function destroy(Request $request): RedirectResponse

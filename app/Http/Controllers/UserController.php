@@ -91,6 +91,6 @@ class UserController extends Controller
         Auth::guard('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('website.index');
+        return redirect()->route('admin.dashboard');
     }
 }

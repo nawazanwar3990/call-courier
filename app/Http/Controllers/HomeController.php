@@ -41,7 +41,7 @@ class HomeController extends Controller
             'dailyGiftCards' => GeneralService::getGiftCards(10),
             'tasks' => $tasks
         ];
-        return view('website.index', $params);
+        return view('admin.dashboard', $params);
     }
 
     public function tasks(Request $request)

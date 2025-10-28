@@ -58,6 +58,6 @@ class RegisteredUserController extends Controller
         // Log the user in
         Auth::login($user);
         // Redirect with success message
-        return redirect()->route('website.index')->with('success', 'Registration successful! Welcome to our platform.');
+        return redirect()->route('admin.dashboard')->with('success', 'Registration successful! Welcome to our platform.');
     }
 }

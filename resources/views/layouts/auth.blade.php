@@ -40,7 +40,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}" />
     <x-global-fixed-scripts/>
 </head>
-<body>
+<body style="background-image: url('{{ asset('assets/img/auth.jpg') }}');background-position: center;background-repeat: no-repeat;background-attachment: fixed;background-size: cover;background-color: #464646;">
 {{ $slot }}
 </body>
 </html>
