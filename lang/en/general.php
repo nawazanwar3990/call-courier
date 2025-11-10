@@ -24,6 +24,7 @@ return [
     'roles' => 'Roles',
 
     'picture' => 'Picture',
+    'branch'=>'Branch',
     'email' => 'Email',
     'mobile' => 'Mobile',
     'username' => 'UserName',

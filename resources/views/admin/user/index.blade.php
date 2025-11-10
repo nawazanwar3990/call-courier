@@ -10,6 +10,7 @@
                             <thead>
                             <tr>
                                 <th>{{ __('general.picture') }}</th>
+                                <th>{{ __('general.branch') }}</th>
                                 <th>{{ __('general.username') }}</th>
                                 <th>{{ __('general.email') }}</th>
                                 <th>{{ __('general.mobile') }}</th>
@@ -127,6 +128,7 @@
                     },
                     columns: [
                         {data: 'photo', className: 'text-center'},
+                        {data: 'branch_id'},
                         {data: 'username'},
                         {data: 'email'},
                         {data: 'mobile'},

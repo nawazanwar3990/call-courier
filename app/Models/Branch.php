@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Enums\TableEnum;
 use App\Traits\Relations\BelongToUser;
 use App\Traits\Relations\HasCreatedByUpdatedBy;
-use App\Traits\Relations\HasManySubmissions;
 use App\Traits\Scopes\HasActiveScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -17,13 +16,11 @@ class Branch extends Model implements HasMedia
     use HasActiveScope,
         SoftDeletes,
         InteractsWithMedia,
-        HasManySubmissions,
         BelongToUser,
         HasCreatedByUpdatedBy;
     protected  $table = TableEnum::BRANCHES;
     protected $fillable = [
         'name',
-        'user_id',
         'active',
         'created_by',
         'updated_by'

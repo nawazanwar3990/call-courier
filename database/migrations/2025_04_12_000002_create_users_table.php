@@ -11,13 +11,12 @@ return new class extends Migration {
         if (!Schema::hasTable(TableEnum::USERS)) {
             Schema::create(TableEnum::USERS, function (Blueprint $table) {
                 $table->id();
+                $table->foreignId('branch_id')->nullable()->constrained(TableEnum::BRANCHES);
                 $table->string('username')->unique()->nullable();
                 $table->string('email')->unique()->nullable();
                 $table->string('mobile')->unique()->nullable();
                 $table->string('password');
                 $table->boolean('active')->default(true);
-                $table->integer('total_coins')->nullable()->default(0);
-                $table->boolean('privacy_policy')->nullable()->default(0);
                 $table->rememberToken();
                 $table->auditFields();
             });

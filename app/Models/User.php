@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\RoleEnum;
+use App\Traits\Relations\BelongToBranch;
 use App\Traits\Relations\HasCreatedByUpdatedBy;
 use App\Traits\Relations\HasDeletedBy;
 use App\Traits\Scopes\HasActiveScope;
@@ -24,6 +25,7 @@ class User extends Authenticatable implements HasMedia
         HasDeletedBy,
         HasActiveScope,
         CausesActivity,
+        BelongToBranch,
         InteractsWithMedia;
 
     protected $fillable = [

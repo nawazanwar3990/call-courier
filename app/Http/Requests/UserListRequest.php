@@ -30,7 +30,7 @@ class UserListRequest extends FormRequest
     {
         $tableName = TableEnum::USERS;
 
-        $records = User::whereHas('roles', function ($query) {
+        $records = User::with('branch')->whereHas('roles', function ($query) {
             $query->where('name', RoleEnum::ROLE_USER);
         });
 
@@ -88,6 +88,7 @@ class UserListRequest extends FormRequest
 
             $dataArr[] = [
                 'photo' => '<img src="' . e($photoUrl) . '" onerror="this.src=\'' . asset('assets/img/user-picture.jpg') . '\'" width="50" class="rounded" />',
+                'branch_id'=>e($record->branch?->name),
                 'username' => e($record->username),
                 'email' => e($record->email),
                 'mobile' => e($record->mobile),

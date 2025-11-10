@@ -12,7 +12,6 @@ return new class extends Migration
             Schema::create(TableEnum::BRANCHES, function (Blueprint $table) {
                 $table->id();
                 $table->string('name')->nullable();
-                $table->foreignId('user_id')->nullable()->constrained(TableEnum::USERS);
                 $table->boolean('active')->default(true);
                 $table->auditFields();
             });
