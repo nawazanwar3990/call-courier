@@ -49,11 +49,7 @@ class AuthenticatedSessionController extends Controller
         $user->load(['roles', 'media']);
         $role = strtolower($user->roles->first()->name ?? '');
 
-        if ($role === RoleEnum::ROLE_SUPER_ADMIN) {
-            return redirect()->route('admin.users.index');
-        }else{
-            return redirect()->intended(route('admin.dashboard'));
-        }
+        return redirect()->intended(route('admin.dashboard'));
     }
     public function destroy(Request $request): RedirectResponse
     {

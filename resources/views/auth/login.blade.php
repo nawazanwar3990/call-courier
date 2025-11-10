@@ -49,9 +49,6 @@
                                         {{ __('general.remember_me') }}
                                     </label>
                                 </div>
-                                <a href="javascript:void(0);" onclick="resetPasswordRequest();" class="text-primary">
-                                    {{ __('general.reset_password') }}
-                                </a>
                             </div>
                             @error('remember')
                             <small class="form-control-feedback text-danger">{{ $message }}</small>
