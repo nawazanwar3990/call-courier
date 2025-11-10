@@ -80,7 +80,6 @@ class ProfileRequest extends FormRequest
     private function updateProfile(): array
     {
         $user = User::query()->findOrFail(auth()->id());
-        $user->privacy_policy = $this->boolean('privacy_policy');
         $user->save();
         if ($this->hasFile('profile_picture')) {
             $user->addMediaFromRequest('profile_picture')
