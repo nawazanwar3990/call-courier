@@ -31,11 +31,7 @@ class BranchRequest extends FormRequest
             return [];
         }
         return [
-            'task_name' => ['required', 'string', 'min:2', 'max:255'],
-            'task_instruction' => ['required'],
-            'task_url' => ['required'],
-            'set_coins' => ['required'],
-            'task_limit' => ['required'],
+            'name' => ['required', 'string', 'min:2', 'max:255'],
             'active' => ['boolean'],
             'picture' => ['nullable', 'file', 'mimes:jpg,jpeg,png'],
             'created_by' => ['nullable', 'exists:users,id'],

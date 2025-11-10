@@ -302,5 +302,8 @@ return [
     'change' => 'Change',
     'change_password' => 'Change Password',
 
-    'login_info'=>'You can login with your email, username, or mobile number'
+    'login_info'=>'You can login with your email, username, or mobile number',
+
+
+    'new_branch'=>'New Branch',
 ];

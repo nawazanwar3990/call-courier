@@ -7,7 +7,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
         </div>
         <div class="modal-body">
-            @include('admin.task.fields')
+            @include('admin.branches.fields')
             <x-created-by></x-created-by>
         </div>
 
