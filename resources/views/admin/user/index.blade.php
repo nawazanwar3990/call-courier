@@ -1,6 +1,4 @@
 <x-dashboard-layout :page-title="$pageTitle">
-    <x-breadcrumb :page-title="$pageTitle" :bread-crumbs="$breadCrumbs" />
-
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -9,11 +7,9 @@
                         <table class="table table-bordered table-hover table-compact w-100" id="table">
                             <thead>
                             <tr>
-                                <th>{{ __('general.picture') }}</th>
                                 <th>{{ __('general.branch') }}</th>
                                 <th>{{ __('general.username') }}</th>
-                                <th>{{ __('general.email') }}</th>
-                                <th>{{ __('general.mobile') }}</th>
+                                <th>{{ __('general.password') }}</th>
                                 <th>{{ __('general.status') }}</th>
                                 <th class="text-center">{!! __('general.actions') !!}</th>
                             </tr>
@@ -127,11 +123,9 @@
                         }
                     },
                     columns: [
-                        {data: 'photo', className: 'text-center'},
                         {data: 'branch_id'},
                         {data: 'username'},
-                        {data: 'email'},
-                        {data: 'mobile'},
+                        {data: 'password'},
                         {data: 'active', className: 'text-center'},
                         {data: 'action', className: "text-center col-1 align-middle no-export"},
                     ],

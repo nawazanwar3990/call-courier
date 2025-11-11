@@ -19,17 +19,14 @@ class UserSeeder extends Seeder
         $records = [
             [
                 'username' => 'admin',
-                'email' => 'admin@callcourier.com',
-                'mobile' => '03' . rand(0, 4) . rand(10000000, 99999999),
                 'password' => Hash::make('admin123'),
                 'active' => true,
                 'created_at' => Carbon::now()
             ],
             [
-                'username' => 'testuser',
-                'email' => 'user@callcourier.com',
-                'mobile' => '03' . rand(0, 4) . rand(10000000, 99999999),
-                'password' => Hash::make('user123'),
+                'username' => 'test_user',
+                'password' => Hash::make('test123'),
+                'normal_password'=>'test123',
                 'active' => true,
                 'branch_id'=>1,
                 'created_at' => Carbon::now()

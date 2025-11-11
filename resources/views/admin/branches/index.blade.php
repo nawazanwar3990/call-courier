@@ -1,6 +1,4 @@
 <x-dashboard-layout :page-title="$pageTitle">
-    <x-breadcrumb :page-title="$pageTitle" :bread-crumbs="$breadCrumbs" />
-
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -9,7 +7,6 @@
                         <table class="table table-bordered table-hover table-compact w-100" id="table">
                             <thead>
                             <tr>
-                                <th>{{ __('general.thumbnail_image') }}</th>
                                 <th>{{ __('general.name') }}</th>
                                 <th>{{ __('general.status') }}</th>
                                 <th class="text-center">{!! __('general.actions') !!}</th>
@@ -51,7 +48,7 @@
                     paging: true,
                     responsive: true,
                     columnDefs: [
-                        { orderable: false, targets: [0, 3] },
+                        { orderable: false, targets: [0,2] },
                         { defaultContent: "", targets: "_all" }
                     ],
                     lengthMenu: [
@@ -116,7 +113,6 @@
                         data: function (data) {}
                     },
                     columns: [
-                        { data: 'thumbnail_image', className: 'text-center' },
                         { data: 'name' },
                         { data: 'status', className: 'text-center' },
                         { data: 'action', className: 'text-center col-1 align-middle no-export' },

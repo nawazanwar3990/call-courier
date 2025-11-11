@@ -28,6 +28,7 @@ class TableEnum extends AbstractEnum
     public const REDEEMS = 'redeems';
     public const HISTORIES = 'histories';
     public const PASSWORD_RESETS = 'password_resets';
+   public const DATA = 'data';
 
     public static function getValues(): array
     {

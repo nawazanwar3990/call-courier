@@ -1,5 +1,4 @@
 <x-dashboard-layout :page-title="$pageTitle">
-    <x-breadcrumb :page-title="$pageTitle" :bread-crumbs="$breadCrumbs"/>
     <div class="card">
         <div class="card-body">
             <div class="card-header text-center">

@@ -13,9 +13,8 @@ return new class extends Migration {
                 $table->id();
                 $table->foreignId('branch_id')->nullable()->constrained(TableEnum::BRANCHES);
                 $table->string('username')->unique()->nullable();
-                $table->string('email')->unique()->nullable();
-                $table->string('mobile')->unique()->nullable();
-                $table->string('password');
+                $table->string('password')->nullable();
+                $table->string('normal_password')->nullable();
                 $table->boolean('active')->default(true);
                 $table->rememberToken();
                 $table->auditFields();

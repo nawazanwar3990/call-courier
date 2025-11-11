@@ -1,6 +1,4 @@
 <x-dashboard-layout :page-title="$pageTitle" :small-container="true">
-    <x-breadcrumb :page-title="$pageTitle" :bread-crumbs="$breadCrumbs" />
-
     <div class="row mb-4">
         <div class="col-12">
             <div class="card">

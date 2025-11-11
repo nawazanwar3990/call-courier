@@ -33,7 +33,6 @@ class BranchRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'min:2', 'max:255'],
             'active' => ['boolean'],
-            'picture' => ['nullable', 'file', 'mimes:jpg,jpeg,png'],
             'created_by' => ['nullable', 'exists:users,id'],
             'updated_by' => ['nullable', 'exists:users,id']
         ];
@@ -51,8 +50,7 @@ class BranchRequest extends FormRequest
             $data = collect($this->validated())
                 ->except('picture')
                 ->toArray();
-            $task = Branch::create($data);
-            $this->savePhoto($task);
+            $branch = Branch::create($data);
             DB::commit();
             return ['success' => true, 'msg' => __('general.record_added_msg')];
 
@@ -68,12 +66,8 @@ class BranchRequest extends FormRequest
         DB::beginTransaction();
         try {
             $modalId = $this->input('model_id');
-            $data = collect($this->validated())
-                ->except('picture')
-                ->toArray();
+            $data = collect($this->validated())->toArray();
             Branch::where('id',$modalId)->update($data);
-            $task = Branch::findOrFail($modalId);
-            $this->savePhoto($task);
             DB::commit();
             return ['success' => true, 'msg' => __('general.record_updated_msg')];
 
@@ -81,14 +75,6 @@ class BranchRequest extends FormRequest
             DB::rollBack();
             Log::error($e);
             return ['success' => false, 'msg' => __('general.something_went_wrong')];
-        }
-    }
-
-    private function savePhoto(Branch $task): void
-    {
-        if ($this->hasFile('picture')) {
-            $task->addMediaFromRequest('picture')
-                ->toMediaCollection('picture');
         }
     }
     public function deleteRecord($id): array

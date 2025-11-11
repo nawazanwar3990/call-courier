@@ -1,11 +1,13 @@
-<script>
-    $(function () {
-        @if ($message = \Illuminate\Support\Facades\Session::get('success'))
-        showAlert('{!! $message !!}', 'success');
-        @endif
+@if ($message = session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ $message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
 
-        @if ($error = \Illuminate\Support\Facades\Session::get('error'))
-        showAlert('{!! $error !!}', 'error');
-        @endif
-    });
-</script>
+@if ($error = session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ $error }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif

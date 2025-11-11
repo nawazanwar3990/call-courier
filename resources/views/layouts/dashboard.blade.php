@@ -8,7 +8,7 @@
 <head>
     <x-meta-tags/>
 
-    <title>{{ isset($pageTitle) ? ($pageTitle . ' : ') : '' }}RIO REWARDS</title>
+    <title>Call Courier</title>
 
     <link href="{{ asset('fonts/fa6-pro/css/all.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/tabler-icons.css') }}"/>
@@ -83,13 +83,24 @@
     <script src="{{ asset('assets/vendor/libs/lightbox/jquery.magnific-popup.min.js') }}"></script>
     <x-global-fixed-scripts/>
 </head>
-<body>
+<style>
+    .card{
+        background-color: #075a41;
+        border: 4px solid #28c76f4d;
+    }
+    div.dataTables_wrapper div.dataTables_length label,
+    div.dataTables_wrapper div.dataTables_filter label,
+    .table td,.table th,
+    .light-style div.dataTables_wrapper div.dataTables_info{
+        color: white !important;
+    }
+</style>
+<body style="background-image: url('{{ asset('assets/img/auth.jpg') }}');background-position: center;background-repeat: no-repeat;background-attachment: fixed;background-size: cover;background-color: #464646;">
 <div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
     <div class="layout-container">
         <x-dashboard-header></x-dashboard-header>
         <div class="layout-page">
             <div class="content-wrapper">
-                <x-dashboard-menu></x-dashboard-menu>
                 <div class="container-fluid flex-grow-1 container-p-y">
                     {{ $slot }}
                 </div>

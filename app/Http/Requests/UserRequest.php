@@ -29,13 +29,9 @@ class UserRequest extends FormRequest
         }
 
         $modelId = $this->route('model_id') ?? $this->input('model_id');
-
         return [
-            'picture'     => ['nullable', 'file', 'mimes:jpg,jpeg,png'],
             'active'      => ['boolean'],
             'username'    => ['required', Rule::unique('users', 'username')->ignore($modelId)],
-            'email'       => ['nullable', 'email', Rule::unique('users', 'email')->ignore($modelId)],
-            'mobile'      => ['required',Rule::unique('users', 'mobile')->ignore($modelId)],
             'password'    => [$this->isMethod('post') ? 'required' : 'nullable'],
             'created_by'  => ['nullable', 'exists:users,id'],
             'updated_by'  => ['nullable', 'exists:users,id'],
@@ -53,20 +49,19 @@ class UserRequest extends FormRequest
 
         try {
             $data = collect($this->validated())
-                ->except('password', 'picture', 'role')
+                ->except('password','role')
                 ->toArray();
 
-            $data['password'] = Hash::make($this->input('password', 'password'));
+            $password = $this->input('password', 'password');
+            $data['password'] = Hash::make($password);
 
             $user = User::create($data);
+            $user->normal_password = $password;
+            $user->branch_id = $this->input('branch_id');
+            $user->save();
 
             $roleId = RoleService::getRoleIdByName(RoleEnum::ROLE_USER);
             $user->roles()->sync($roleId);
-
-            if ($this->hasFile('picture')) {
-                $this->savePhoto($user);
-            }
-
             DB::commit();
 
             return ['success' => true, 'msg' => __('general.record_added_msg')];
@@ -83,19 +78,21 @@ class UserRequest extends FormRequest
 
         try {
             $user = User::findOrFail($id);
-
             $data = collect($this->validated())
-                ->except('password', 'picture', 'model_id')
+                ->except('password', 'model_id')
                 ->toArray();
-
-            if ($this->filled('password')) {
-                $data['password'] = Hash::make($this->input('password'));
-            }
 
             $user->update($data);
 
-            if ($this->hasFile('picture')) {
-                $this->savePhoto($user);
+            if ($this->filled('password')) {
+                $password = $this->input('password');
+                $user->password = Hash::make($password);
+                $user->normal_password = $password;
+                $user->save();
+            }
+            if ($this->filled('branch_id')) {
+                $user->branch_id = $this->input('branch_id');
+                $user->save();
             }
 
             DB::commit();
@@ -124,10 +121,5 @@ class UserRequest extends FormRequest
             Log::error($e);
             return ['success' => false, 'msg' => __('general.something_went_wrong')];
         }
-    }
-
-    private function savePhoto(User $user): void
-    {
-        $user->addMediaFromRequest('picture')->toMediaCollection('picture');
     }
 }

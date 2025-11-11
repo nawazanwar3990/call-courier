@@ -68,7 +68,6 @@ class BranchListRequest extends FormRequest
         $dataArr = [];
         foreach ($records as $key => $record) {
             $dataArr[] = [
-                'thumbnail_image' => '<img src="' . $record->getFirstMediaUrl('picture') . '" width="50" class="rounded" />',
                 'name' => $record->name,
                 'status' => ($record->active === true ? '<span class="badge bg-success">' . __('general.active') . '</span>' : '<span class="badge bg-danger">' . __('general.in_active') . '</span>'),
                 'action' => $this->getActions($record)
@@ -88,13 +87,6 @@ class BranchListRequest extends FormRequest
         $action = '<div class="btn-group"><button type="button" class="btn btn-primary btn-md dropdown-toggle" data-bs-toggle="dropdown"
                     aria-expanded="false" aria-haspopup="true">' . __('general.action') . '</button>
                     <ul class="dropdown-menu">';
-        if (auth()->user()->can(AbilityEnum::UPDATE, Branch::class)) {
-            $action .= '<li>
-                            <a class="dropdown-item modal-edit-btn" href="javascript:void(0)" data-href="' . route('admin.branches.edit', $record->id) . '" data-init-select2="true">
-                                <i class="fa-regular fa-pen-to-square me-2"></i>' . __('general.edit') . '
-                            </a>
-                        </li>';
-        }
         if (Auth::user()->can(AbilityEnum::DELETE, Branch::class)) {
             $action .= '<li><hr class="dropdown-divider"></li>
                         <li>

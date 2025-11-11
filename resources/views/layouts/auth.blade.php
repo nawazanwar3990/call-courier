@@ -9,7 +9,7 @@
 <head>
     <x-meta-tags />
 
-    <title>{{ isset($pageTitle) ? ($pageTitle . ' :: ') : '' }}RIO REWARDS</title>
+    <title>>Call Courier</title>
 
     <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/tabler-icons.css') }}" />
     <script src="{{ asset('js/theme-switch.js') }}"></script>

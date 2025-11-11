@@ -45,16 +45,10 @@ class BranchController extends Controller
         Gate::authorize(AbilityEnum::CREATE, Branch::class);
         return response()->json($request->saveRecord());
     }
-
-    public function show($id)
-    {
-        Gate::authorize(AbilityEnum::VIEW, Branch::class);
-    }
-
     public function edit($id)
     {
         Gate::authorize(AbilityEnum::UPDATE, Branch::class);
-        $branch = Branch::with(['updatedBy:id,username'])->findOrFail($id);
+        $branch = Branch::indOrFail($id);
         $params = [
             'pageTitle' => __('general.edit_branch') . ' : ' . $branch->name,
             'model' => $branch,

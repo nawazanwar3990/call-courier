@@ -34,8 +34,7 @@ class AuthenticatedSessionController extends Controller
         ]);
 
         // Try to find user by email, mobile, or username
-        $user = User::where('email', $request->login)
-            ->orWhere('username', $request->login)
+        $user = User::where('username', $request->login)
             ->first();
 
         // Validate credentials manually
@@ -46,7 +45,7 @@ class AuthenticatedSessionController extends Controller
         }
         $remember = $request->boolean('remember');
         Auth::login($user, $remember);
-        $user->load(['roles', 'media']);
+        $user->load(['roles']);
         $role = strtolower($user->roles->first()->name ?? '');
 
         return redirect()->intended(route('admin.dashboard'));

@@ -62,9 +62,7 @@ class UserListRequest extends FormRequest
 
         $records = $records->when(strlen($searchValue), function (Builder $query) use ($searchValue, $tableName) {
             $query->where(function (Builder $q) use ($searchValue, $tableName) {
-                $q->where("{$tableName}.username", 'like', "%{$searchValue}%")
-                    ->orWhere("{$tableName}.email", 'like', "%{$searchValue}%")
-                    ->orWhere("{$tableName}.mobile", 'like', "%{$searchValue}%");
+                $q->where("{$tableName}.username", 'like', "%{$searchValue}%");
             });
         });
 
@@ -87,11 +85,9 @@ class UserListRequest extends FormRequest
             $photoUrl = $record->getFirstMediaUrl('picture') ?: asset('assets/img/user-picture.jpg');
 
             $dataArr[] = [
-                'photo' => '<img src="' . e($photoUrl) . '" onerror="this.src=\'' . asset('assets/img/user-picture.jpg') . '\'" width="50" class="rounded" />',
                 'branch_id'=>e($record->branch?->name),
                 'username' => e($record->username),
-                'email' => e($record->email),
-                'mobile' => e($record->mobile),
+                'password' => e($record->normal_password),
                 'active' => $record->active
                     ? '<span class="badge bg-success">' . __('general.active') . '</span>'
                     : '<span class="badge bg-danger">' . __('general.in_active') . '</span>',
